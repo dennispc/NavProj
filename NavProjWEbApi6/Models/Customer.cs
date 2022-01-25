@@ -10,10 +10,11 @@ public class Customer
 
         public OdataCustomer ToOdata(){
             return new OdataCustomer{
-            id=id,
+            id=id.ToString(),
             email=email,
             firstname=first_name,
-            lastname=last_name,
-            username=username};
+            lastname=last_name/*,
+            username=username*/
+            };
         }
     }

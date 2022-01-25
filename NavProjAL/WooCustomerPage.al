@@ -5,9 +5,9 @@ page 50157 WooCustomerAPI
     APIPublisher = 'publisherName';
     APIGroup = 'groupName';
     APIVersion = 'v0.1';
-    EntityName = 'entityName';
-    EntitySetName = 'entitySetName';
-    SourceTable = WooCustomer;
+    EntityName = 'CustomerSet';
+    EntitySetName = 'CustomerSetName';
+    SourceTable = Customer;
     DelayedInsert = true;
 
     layout
@@ -16,26 +16,27 @@ page 50157 WooCustomerAPI
         {
             repeater(GroupName)
             {
-                field(id; Rec.Id)
+                field(id; Rec."No.")
                 {
 
                 }
-                field(email; Rec.Email)
+                field(email; Rec."E-Mail")
                 {
 
                 }
-                field(firstname; Rec."First Name")
+                field(firstname; Rec.Name)
                 {
 
                 }
-                field(lastname; Rec."Last Name")
+                field(lastname; Rec."Name 2")
                 {
 
                 }
-                field(username; Rec.Username)
+                field(gbc; Rec."Gen. Bus. Posting Group")
                 {
 
                 }
+                field(cpg; Rec."Customer Posting Group") { }
             }
         }
     }

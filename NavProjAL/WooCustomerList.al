@@ -48,6 +48,7 @@ page 50158 "Woo Customer List"
                 ApplicationArea = All;
 
                 trigger OnAction();
+                var
                 begin
 
                 end;

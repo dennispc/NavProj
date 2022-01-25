@@ -1,36 +1,53 @@
-codeunit 50156 "Export Product"
+codeunit 50156 "Export Item To WooCommerce"
 {
 
-    procedure exportToWoocommerce(product: Record Product)
+    procedure exportToWoocommerce(item: Record Item)
     var
         client: HttpClient;
         content: HttpContent;
         response: HttpResponseMessage;
-        request: HttpRequestMessage;
-        header: HttpHeaders;
-        header2: HttpHeaders;
-        json: JsonObject;
-        jsonText: Text;
-        result: Boolean;
+        httpRequest: HttpRequestMessage;
+        contentHeader: HttpHeaders;
+        requestHeader: HttpHeaders;
+        itemAsJson: JsonObject;
+        itemJsonAsText: Text;
         responseText: Text;
-        requestURI: Text;
+        imageStream: InStream;
+        imageText: Text;
+        resJson: JsonObject;
+        idJson: JsonToken;
+        id: Text;
     begin
-        json.Add('name', product.Name);
-        json.Add('price', product.Price);
+        itemAsJson.Add('name', item.Description);
+        itemAsJson.Add('price', Format(item."Unit Price"));
+        itemAsJson.Add('regular_price', Format(item."Unit Price"));
+        itemAsJson.Add('description', item.Description);
+        itemAsJson.Add('sku', item."No.");
+        //item.Picture.ImportStream(imageStream, 'itemImage');
+        //imageStream.ReadText(imageText);
+        //json.Add('image', imageText);
 
-        json.AsToken().WriteTo(jsonText);
-        content.GetHeaders(header);
-        content.WriteFrom(jsonText);
-        header.Clear();
-        header.Add('Content-Type', 'application/json');
-        request.Content := content;
-        request.GetHeaders(header2);
-        header2.Add('Authorization', 'Basic Y2tfMmEyNTVkMWU0MDNmYmRkZjRiYTI1YWEyMDFjOGYzYWNhYzJmMTZlMzpjc19iZWZiNDJhM2QzYWQ2NGQ5Y2JiZGFlMzE3NDUyZTIyZWZlZmQ5YTY3');
-        requestURI := 'https://localhost/wordpress/wp-json/wc/v2/products';
-        request.SetRequestUri(requestURI);
-        request.Method := 'POST';
-        client.Send(request, response);
-        response.Content().ReadAs(responseText);
+        itemAsJson.AsToken().WriteTo(itemJsonAsText);
+        content.WriteFrom(itemJsonAsText);
+        content.GetHeaders(contentHeader);
+        contentHeader.Clear();
+        contentHeader.Add('Content-Type', 'application/json');
+        httpRequest.Content := content;
+
+        httpRequest.GetHeaders(requestHeader);
+        requestHeader.Add('Authorization', 'Basic Y2tfMmEyNTVkMWU0MDNmYmRkZjRiYTI1YWEyMDFjOGYzYWNhYzJmMTZlMzpjc19iZWZiNDJhM2QzYWQ2NGQ5Y2JiZGFlMzE3NDUyZTIyZWZlZmQ5YTY3');
+
+        httpRequest.SetRequestUri('https://localhost/wordpress/wp-json/wc/v2/products');
+        httpRequest.Method := 'POST';
+        if (client.Send(httpRequest, response)) then begin
+            response.Content().ReadAs(responseText);
+            resJson.ReadFrom(responseText);
+            if (resJson.Get('id', idJson)) then begin
+                idJson.WriteTo(id);
+                item."No. 2" := id;
+            end;
+        end;
+
         Message(responseText);
     end;
 }

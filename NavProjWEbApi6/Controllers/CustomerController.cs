@@ -30,6 +30,21 @@ public class CustomerController : ControllerBase
         var httpClient= new HttpClient(handler);
         using var httpResponseMessage=
             await httpClient.PostAsJsonAsync(adress,customer.ToOdata());
+            Console.WriteLine(httpResponseMessage);
+        return Ok(httpResponseMessage);
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult> Delete([FromQuery] int ID){
+        Uri adress = new Uri(@"http://desktop-78qcrn9:7048/BC170/ODataV4/Company('CRONUS%20UK%20Ltd.')/CustomerService");
+
+        var credentialsCache = new CredentialCache();
+            credentialsCache.Add(adress, "NTLM", new NetworkCredential(config["windows-email"], config["windows-pass"]));
+            var handler = new HttpClientHandler() { Credentials = credentialsCache, PreAuthenticate = true };
+        var httpClient= new HttpClient(handler);
+        using var httpResponseMessage=
+            await httpClient.DeleteAsync($"{adress}/{ID}");
+            Console.WriteLine(httpResponseMessage);
         return Ok(httpResponseMessage);
     }
 }
