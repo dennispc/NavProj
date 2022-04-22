@@ -3,7 +3,7 @@ namespace Models
 {
     public class ODataOrder
     {
-        
+
         public int id{get;set;}
         public string firstname{get;set;}
         public string lastname{get;set;}
@@ -14,6 +14,7 @@ namespace Models
         public string town{get;set;}
         public string phone{get;set;}
         public string email{get;set;}
-        //public string lines{get;set;}
+        public string datecreated{get;set;}
+        public string lines{get;set;}
     }
 }

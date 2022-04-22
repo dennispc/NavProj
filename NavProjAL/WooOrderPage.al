@@ -26,8 +26,9 @@ page 50160 WooOderPage
                 field(town; Rec.town) { }
                 field(phone; Rec.phone) { }
                 field(email; Rec.email) { }
-                //field(lines; Rec.lines) { }
-                field(NavId; Rec.NavId) { }
+                field(lines; Rec.lines) { }
+                field(datecreated; Rec.datecreated) { }
+
             }
         }
     }

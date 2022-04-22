@@ -28,10 +28,8 @@ public class CustomerController : ControllerBase
             credentialsCache.Add(adress, "NTLM", new NetworkCredential(config["windows-email"], config["windows-pass"]));
             var handler = new HttpClientHandler() { Credentials = credentialsCache, PreAuthenticate = true };
         var httpClient= new HttpClient(handler);
-        Console.WriteLine("Start");
         using var httpResponseMessage=
             await httpClient.PostAsJsonAsync(adress,customer.ToOdata());
-        Console.WriteLine(httpResponseMessage);
         return Ok(httpResponseMessage);
     }
 }

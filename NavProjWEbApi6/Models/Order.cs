@@ -1,4 +1,5 @@
 using Models;
+using Newtonsoft.Json;
 
 namespace NavProjWEbApi6.Models
 {
@@ -6,31 +7,38 @@ namespace NavProjWEbApi6.Models
     {
         public int id{get;set;}
         public int customer_id{get;set;}
-        public string first_name{get;set;}
-        public string last_name{get;set;}
-        public string company{get;set;}
-        public string region{get;set;}
-        public string address_1{get;set;}
-        public string address_2{get;set;}
-        public string postcode{get;set;}
-        public string city{get;set;}
-        public string state{get;set;}
-        public string phone{get;set;}
-        public string email{get;set;}
-        public string[] line_items{get;set;}
+        public dynamic billing{get;set;}
+        public dynamic line_items{get;set;}
+        public string date_created{get;set;}
+        private Item[] lineItems{get=>JsonConvert.DeserializeObject<Item[]>(line_items.ToString());}
+        private string lineItemsString(){
+            string res = "";
+            for(int i=0 ; i < lineItems.Count();i++)
+            {
+                var item = lineItems[i];
+                res+=$"{item.product_id},{item.quantity}";
+                if(i<lineItems.Count()-1)
+                {
+                    res+=",";
+                } 
+            }
+            return res;
+        }
+        private Billing jsonString{get=>JsonConvert.DeserializeObject<Billing>(billing.ToString());}
 
         public ODataOrder ToOdata(){
             return new ODataOrder{
                 id=id,
-                companyname=company,
-                email=email,
-                firstname=first_name,
-                lastname=last_name,
-                phone=phone,
-                postcode=postcode,
-                streetaddress=address_1 + address_2,
-                region=state
-                /*,lines=line_items.ToString()*/
+                companyname=jsonString.company,
+                email=jsonString.email,
+                firstname=jsonString.first_name,
+                lastname=jsonString.last_name,
+                phone=jsonString.phone,
+                postcode=jsonString.postcode,
+                streetaddress=jsonString.address_1 + jsonString.address_2,
+                region=jsonString.state,
+                datecreated=date_created,
+                lines=lineItemsString()
                 };
             }
         }

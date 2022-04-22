@@ -2,6 +2,7 @@ table 50159 WooOrder
 {
     DataClassification = ToBeClassified;
 
+
     fields
     {
         field(1; id; Integer) { }
@@ -19,6 +20,10 @@ table 50159 WooOrder
             AutoIncrement = true;
         }
         field(12; lines; Text[1000]) { }
+        field(13; datecreated; Text[100])
+        {
+
+        }
     }
 
     keys
@@ -30,11 +35,9 @@ table 50159 WooOrder
     }
 
     var
-        myInt: Integer;
 
     trigger OnInsert()
     begin
-
     end;
 
     trigger OnModify()

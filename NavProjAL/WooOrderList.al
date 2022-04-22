@@ -23,6 +23,7 @@ page 50161 WooOrderList
                 field(email; Rec.email) { }
                 field(NavId; Rec.NavId) { }
                 field(lines; Rec.lines) { }
+                field(dateCreated; Rec.datecreated) { }
             }
         }
         area(Factboxes)
