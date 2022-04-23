@@ -35,13 +35,20 @@ page 50154 "Product List"
     {
         area(Processing)
         {
-            action(ActionName)
+            action("Export to WooCommerce")
             {
                 ApplicationArea = All;
 
-                trigger OnAction();
+                trigger OnAction()
+                var
+                    table: Record Product temporary;
+                    exp: Codeunit "Export Product";
                 begin
-
+                    table.ID := Rec.ID;
+                    table.Name := Rec.Name;
+                    table.Paragraph := Rec.Paragraph;
+                    table.Price := Rec.Price;
+                    exp.exportToWoocommerce(table);
                 end;
             }
         }

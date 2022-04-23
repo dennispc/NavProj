@@ -37,14 +37,9 @@ page 50155 "Product Page"
 
                 trigger OnAction()
                 var
-                    table: Record Product temporary;
                     exp: Codeunit "Export Product";
                 begin
-                    table.ID := Rec.ID;
-                    table.Name := Rec.Name;
-                    table.Paragraph := Rec.Paragraph;
-                    table.Price := Rec.Price;
-                    exp.exportToWoocommerce(table);
+                    exp.exportToWoocommerce(Rec);
                 end;
             }
         }
