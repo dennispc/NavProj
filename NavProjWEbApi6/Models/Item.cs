@@ -4,9 +4,9 @@ namespace Models
     {
         public int id{get;set;}
         public int quantity{get;set;}
+        public int DocumentNo { get; set; }
         public string sku{get;set;}
         public string OrderId{get;set;}
-        public string DocumentNo { get; set; }
         public ODataItem ToOdataItem(){
             return new ODataItem{
                 LineNo=id,

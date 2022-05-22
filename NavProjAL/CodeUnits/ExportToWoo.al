@@ -1,4 +1,4 @@
-codeunit 50156 "Export Item To WooCommerce"
+codeunit 50110 "Export Item To WooCommerce"
 {
 
     procedure exportToWoocommerce(item: Record Item)

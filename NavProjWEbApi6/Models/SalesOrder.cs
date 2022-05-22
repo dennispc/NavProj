@@ -8,17 +8,15 @@ namespace Models
     public class SalesOrder
     {
             public string Document_Type{get;set;}="Order";
-            
             public string Sell_to_Customer_No{get;set;}
             public string Posting_Description{get=>$"Order from {Sell_to_Customer_No}";}
-            
             public string Document_Date{get;set;}//"2022-01-13",
             public string Posting_Date{get;set;} //"2022-01-28",
             public string Order_Date{get;set;}// "2022-01-13",
             public string Due_Date{get;set;} //2022-01-31",
             public string Requested_Delivery_Date{get;set;}// "0001-01-01",
             public string Promised_Delivery_Date{get;set;}// "0001-01-01",
-            public string Status{get;set;}
+            //public string Status{get;set;}="Released";
             public string Currency_Code{get;set;}
             public bool Prices_Including_VAT{get;set;}
             public string Shipment_Method_Code{get;set;}
@@ -42,7 +40,6 @@ namespace Models
             public string Prepayment_Due_Date{get;set;}//2022-01-31",
             public string Prepmt_Payment_Discount_Percent{get;set;}
             public string Prepmt_Pmt_Discount_Date{get;set;}//2022-01-13",
-            
             //public string Sell_to_Customer_Name{get;set;}
             //public int Quote_No{get;set;}
             //public string Sell_to_Address{get;set;}
@@ -99,7 +96,7 @@ namespace Models
             //public string BillToContactMobilePhoneNo{get;set;}
             //public string BillToContactEmail{get;set;}
             //public string Prepayment_Percent{get;set;}="0.0";
-            //public string Date_Filter{get;set;}="..04/24/22";
+            //public string Date_Filter{get;set;}="..01/01/22";
         
     }
 }

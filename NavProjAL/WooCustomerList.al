@@ -49,6 +49,7 @@ page 50158 "Woo Customer List"
 
                 trigger OnAction();
                 var
+                    test: Page 42;
                 begin
 
                 end;

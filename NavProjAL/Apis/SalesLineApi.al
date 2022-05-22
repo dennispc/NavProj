@@ -1,4 +1,4 @@
-page 50153 SalesLineApi
+page 50100 SalesLineApi
 {
     PageType = API;
     Caption = 'Sales Line Api';
@@ -18,6 +18,7 @@ page 50153 SalesLineApi
             {
                 field(OrderId; Rec."No.") { }
                 field(LineNo; Rec."Line No.") { }
+                field(LineAmount; Rec."Line Amount") { }
                 field(ItemNo; Rec."Item Reference No.") { }
                 field(Quantity; Rec.Quantity) { }
                 field(DocumentNo; Rec."Document No.") { }
