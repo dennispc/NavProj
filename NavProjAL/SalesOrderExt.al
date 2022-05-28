@@ -1,4 +1,4 @@
-pageextension 50167 MyExtension extends "Item List"
+pageextension 50181 SalesOrderExt extends "Sales Order List"
 {
     layout
     {
@@ -7,17 +7,19 @@ pageextension 50167 MyExtension extends "Item List"
 
     actions
     {
-        addlast(Functions)
+        // Add changes to page actions here
+        addafter(Action12)
         {
-            action("Export to WooCommerce")
+
+            action("Send report to admin")
             {
                 ApplicationArea = All;
 
                 trigger OnAction()
                 var
-                    exp: Codeunit "Export Item To WooCommerce";
+                    mailCodeunit: Codeunit MyCodeunit;
                 begin
-                    exp.exportToWoocommerce(Rec);
+                    mailCodeunit.mailWithSalesReport('dnisp@live.dk');
                 end;
             }
         }

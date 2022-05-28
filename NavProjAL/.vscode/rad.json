@@ -1,1 +1,1 @@
-﻿{"Added":[{"Id":50180,"Kind":13,"Name":"MyReport","PackagePath":"/src/SalesOverview.al"},{"Id":50264,"Kind":11,"Name":"MyCodeunit","PackagePath":"/src/CodeUnits/MailCodeUnit.al"}],"Modified":[{"Id":50130,"Kind":16,"Name":"CustomerExtension","PackagePath":"/src/PageExtensions/CustomerExtension.al"}],"Removed":[{"Id":0,"Kind":11,"Name":"File Management","PackagePath":"/src/PageExtensions/CustomerExtension.al"}]}
+﻿{"Added":[],"Modified":[],"Removed":[]}

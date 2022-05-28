@@ -84,4 +84,5 @@ codeunit 50101 SalesLine
 
         end;
     end;
+
 }

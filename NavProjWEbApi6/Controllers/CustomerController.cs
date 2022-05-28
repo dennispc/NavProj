@@ -30,7 +30,7 @@ public class CustomerController : ControllerBase
         var httpClient= new HttpClient(handler);
         using var httpResponseMessage=
             await httpClient.PostAsJsonAsync(adress,customer.ToOdata());
-            Console.WriteLine(httpResponseMessage);
+            //Console.WriteLine(httpResponseMessage);
         return Ok(httpResponseMessage);
     }
 
@@ -44,7 +44,7 @@ public class CustomerController : ControllerBase
         var httpClient= new HttpClient(handler);
         using var httpResponseMessage=
             await httpClient.DeleteAsync($"{adress}/{ID}");
-            Console.WriteLine(httpResponseMessage);
+            //Console.WriteLine(httpResponseMessage);
         return Ok(httpResponseMessage);
     }
 }

@@ -17,8 +17,6 @@ codeunit 50264 MyCodeunit
         CRLF: Text[2];
         HTMLFormatted: Boolean;
         inStreamer: InStream;
-        tempD: Codeunit "Temp Blob";
-        asd: Report MyReport;
     begin
 
         if not SmtpMailSetup.Get() then
@@ -29,21 +27,59 @@ codeunit 50264 MyCodeunit
         Recipients.Add(toEmail_P);
 
         Subject := subject_P;
-
         Body := body_P;
+
         Mail.CreateMessage('Business Central', SmtpMailSetup."User ID", Recipients, Subject, Body, HTMLFormatted);
-
-        ///FileManage.BLOBImportFromServerFile(tempD, 'C:\Excel\TestBuffer.csv');
-
-        tempD.CreateInStream(inStreamer);
-
-        //mail.AddAttachmentStream(inStreamer, 'TestBuffer.csv');
 
         if not Mail.Send() then
             Message(Mail.GetLastSendMailErrorText());
 
     end;
 
+    procedure mailWithSalesReport(toEmail_P: Text)
+
     var
-        myInt: Integer;
+        SmtpMailSetup: Record "SMTP Mail Setup";
+        Mail: Codeunit "SMTP Mail";
+        Recipients: List of [Text];
+        Subject: Text;
+        Body: Text;
+        CRLF: Text[2];
+        HTMLFormatted: Boolean;
+        tempPdf: Codeunit "Temp Blob";
+        inStreamer: InStream;
+        report: Report 50180;
+        fileName: Text;
+        fileManager: Codeunit "File Management";
+        headersOfToday: Record "Sales Header";
+        day: Date;
+    begin
+        day := DMY2Date(27, 1, 2022);
+        headersOfToday.SetFilter("Order Date", format(day));
+        report.SetTableView(headersOfToday);
+        fileName := 'sales_report_' + Format(Today) + '.pdf';
+        if not SmtpMailSetup.Get() then
+            exit;
+
+        HTMLFormatted := true;
+
+        Recipients.Add(toEmail_P);
+
+        Subject := 'Sales Report ' + Format(Today);
+        Body := 'Attatched is the weekly overview of sales orders';
+
+        if (report.SaveAsPdf(fileName)) then begin
+            fileManager.BLOBImportFromServerFile(tempPdf, fileName);
+            tempPdf.CreateInStream(inStreamer);
+
+            Mail.CreateMessage('Business Central', SmtpMailSetup."User ID", Recipients, Subject, Body, HTMLFormatted);
+            Mail.AddAttachmentStream(inStreamer, fileName);
+
+            if not Mail.Send() then
+                Message(Mail.GetLastSendMailErrorText());
+        end
+        else
+            Message('No sales today, try again later.')
+    end;
+
 }
