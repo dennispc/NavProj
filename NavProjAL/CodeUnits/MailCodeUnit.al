@@ -1,4 +1,4 @@
-codeunit 50264 MyCodeunit
+codeunit 50210 "Mail Codeunit"
 {
     trigger OnRun()
     begin
@@ -48,7 +48,7 @@ codeunit 50264 MyCodeunit
         HTMLFormatted: Boolean;
         tempPdf: Codeunit "Temp Blob";
         inStreamer: InStream;
-        report: Report 50180;
+        report: Report "Sales 24h Overview";
         fileName: Text;
         fileManager: Codeunit "File Management";
         headersOfToday: Record "Sales Header";

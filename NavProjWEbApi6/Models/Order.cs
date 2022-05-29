@@ -18,16 +18,15 @@ namespace NavProjWEbApi6.Models
         
         private Billing billingString{get=>JsonConvert.DeserializeObject<Billing>(billing.ToString());}
         private Shipping shippingString{get=>JsonConvert.DeserializeObject<Shipping>(shipping.ToString());}
-
         public SalesOrder ToSalesOrder(){
             return new SalesOrder{
                 Sell_to_Customer_No=$"{customer_id.ToString()}",
-                Document_Date=DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd"),
-                Posting_Date=DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd"),
-                Order_Date=DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd"),
-                Due_Date=DateTime.Now.AddDays(3).AddMonths(-3).ToString("yyyy-MM-dd"),
-                Requested_Delivery_Date=DateTime.Now.AddDays(1).AddMonths(-3).ToString("yyyy-MM-dd"),
-                Promised_Delivery_Date=DateTime.Now.AddDays(1).AddMonths(-3).ToString("yyyy-MM-dd"),
+                Document_Date=DateTime.Now.AddMonths(-4).ToString("yyyy-MM-dd"),
+                Posting_Date=DateTime.Now.AddMonths(-4).ToString("yyyy-MM-dd"),
+                Order_Date=DateTime.Now.AddMonths(-4).ToString("yyyy-MM-dd"),
+                Due_Date=DateTime.Now.AddDays(3).AddMonths(-4).ToString("yyyy-MM-dd"),
+                Requested_Delivery_Date=DateTime.Now.AddDays(1).AddMonths(-4).ToString("yyyy-MM-dd"),
+                Promised_Delivery_Date=DateTime.Now.AddDays(1).AddMonths(-4).ToString("yyyy-MM-dd"),
                 Currency_Code=currency,
                 Prices_Including_VAT=prices_include_tax,
                 //Sell_to_Address=billingString.address_1,

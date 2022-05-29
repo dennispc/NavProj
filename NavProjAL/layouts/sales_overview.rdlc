@@ -40,7 +40,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Column Name1</Value>
+                                  <Value>Customer</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -70,7 +70,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Column Name2</Value>
+                                  <Value>Amount</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -100,7 +100,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Column Name3</Value>
+                                  <Value>No.</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -135,7 +135,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ColumnName1.Value</Value>
+                                  <Value>=Fields!Customer.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -165,7 +165,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ColumnName2.Value</Value>
+                                  <Value>=Fields!Amount.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -195,7 +195,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ColumnName3.Value</Value>
+                                  <Value>=Fields!OrderNumber.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -240,8 +240,8 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.38417in</Top>
             <Left>0.41542in</Left>
-            <Height>1.28125in</Height>
-            <Width>4.41667in</Width>
+            <Height>1.28124in</Height>
+            <Width>4.41666in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -300,17 +300,17 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
-        <Field Name="ColumnName1">
-          <DataField>ColumnName1</DataField>
+        <Field Name="Customer">
+          <DataField>Customer</DataField>
         </Field>
-        <Field Name="ColumnName2">
-          <DataField>ColumnName2</DataField>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
         </Field>
-        <Field Name="ColumnName2Format">
-          <DataField>ColumnName2Format</DataField>
+        <Field Name="AmountFormat">
+          <DataField>AmountFormat</DataField>
         </Field>
-        <Field Name="ColumnName3">
-          <DataField>ColumnName3</DataField>
+        <Field Name="OrderNumber">
+          <DataField>OrderNumber</DataField>
         </Field>
       </Fields>
       <Query>

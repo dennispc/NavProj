@@ -1,10 +1,10 @@
-report 50180 "Sales 24h Overview"
+report 50141 "Sales 24h Overview"
 {
     UsageCategory = Administration;
     ApplicationArea = All;
     ProcessingOnly = false;
     DefaultLayout = RDLC;
-    RDLCLayout = './layout.rdlc';
+    RDLCLayout = 'layouts/sales_overview.rdlc';
     dataset
     {
 
@@ -12,15 +12,15 @@ report 50180 "Sales 24h Overview"
         {
             RequestFilterFields = "Order Date";
 
-            column(ColumnName1; "Sell-to Customer Name")
+            column(Customer; "Sell-to Customer Name")
             {
 
             }
-            column(ColumnName2; Amount)
+            column(Amount; Amount)
             {
 
             }
-            column(ColumnName3; "No.")
+            column(OrderNumber; "No.")
             {
 
             }

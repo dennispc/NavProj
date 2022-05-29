@@ -1,4 +1,4 @@
-pageextension 50167 MyExtension extends "Item List"
+pageextension 50111 "Item export extension" extends "Item List"
 {
     layout
     {

@@ -7,7 +7,9 @@ namespace Models
         public int DocumentNo { get; set; }
         public string sku{get;set;}
         public string OrderId{get;set;}
-        public ODataItem ToOdataItem(){
+        public ODataItem ToOdataItem(
+            string OrderId,
+            int DocumentNo){
             return new ODataItem{
                 LineNo=id,
                 ItemNo=sku,

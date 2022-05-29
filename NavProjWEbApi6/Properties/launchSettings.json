@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "NavProjWEbApi6": {
+    "NavProjWebApi6": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

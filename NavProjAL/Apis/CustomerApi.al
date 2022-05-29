@@ -1,7 +1,7 @@
-page 50157 WooCustomerAPI
+page 50121 CustomerAPI
 {
     PageType = API;
-    Caption = 'apiPageName';
+    Caption = 'api for customer';
     APIPublisher = 'publisherName';
     APIGroup = 'groupName';
     APIVersion = 'v0.1';
