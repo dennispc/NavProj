@@ -60,7 +60,6 @@ codeunit 50210 "Mail Codeunit"
         fileName := 'sales_report_' + Format(Today) + '.pdf';
         if not SmtpMailSetup.Get() then
             exit;
-
         HTMLFormatted := true;
 
         Recipients.Add(toEmail_P);

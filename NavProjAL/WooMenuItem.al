@@ -6,7 +6,14 @@ pageextension 50161 WooMenuItem extends "Order Processor Role Center"
         {
             action("WooCommerce")
             {
-                RunObject = page "Woo Page";
+                RunObject = page "Woo Sales Card";
+
+                ApplicationArea = All;
+            }
+            action("Amazon")
+            {
+                RunObject = page "Amazon page";
+
                 ApplicationArea = All;
             }
         }

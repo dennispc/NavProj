@@ -3,6 +3,7 @@ pageextension 50111 "Item export extension" extends "Item List"
     layout
     {
         // Add changes to page layout here
+
     }
 
     actions

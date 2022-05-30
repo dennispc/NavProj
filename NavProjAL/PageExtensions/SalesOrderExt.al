@@ -27,4 +27,5 @@ pageextension 50142 SalesOrderExt extends "Sales Order List"
 
     var
         myInt: Integer;
+        asd: Page 30;
 }
