@@ -1,4 +1,4 @@
-pageextension 50111 "Item export extension" extends "Item List"
+pageextension 50111 "Item Extension" extends "Item List"
 {
     layout
     {
@@ -16,9 +16,9 @@ pageextension 50111 "Item export extension" extends "Item List"
 
                 trigger OnAction()
                 var
-                    exp: Codeunit "Export Item To WooCommerce";
+                    exp: Codeunit "Item Export Mgt";
                 begin
-                    exp.exportToWoocommerce(Rec);
+                    exp.ExportToWoocommerce(Rec);
                 end;
             }
         }

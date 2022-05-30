@@ -1,4 +1,4 @@
-pageextension 50172 MyExtension extends "Item Card"
+pageextension 50170 "Item Page Extension" extends "Item Card"
 {
     layout
     {
@@ -30,9 +30,9 @@ pageextension 50172 MyExtension extends "Item Card"
                 PromotedOnly = true;
                 trigger OnAction()
                 var
-                    exportCodeunit: Codeunit "Export Item To WooCommerce";
+                    ExportCodeunit: Codeunit "Item Export Mgt";
                 begin
-                    exportCodeunit.exportToWoocommerce(Rec);
+                    ExportCodeunit.ExportToWoocommerce(Rec);
                     Rec."Is in Woocommerce" := true;
                 end;
             }

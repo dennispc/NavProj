@@ -1,4 +1,4 @@
-pageextension 50161 WooMenuItem extends "Order Processor Role Center"
+pageextension 50160 "Woo Menu Item" extends "Order Processor Role Center"
 {
     actions
     {
@@ -12,20 +12,20 @@ pageextension 50161 WooMenuItem extends "Order Processor Role Center"
             }
             action("Amazon")
             {
-                RunObject = page "Amazon page";
+                RunObject = page "Amazon Page";
 
                 ApplicationArea = All;
             }
             action("Fraud")
             {
-                RunObject = codeunit FraudCodeunit;
+                RunObject = codeunit "Fraud Mgt";
 
                 ApplicationArea = All;
             }
 
             action("Order Confirmation test")
             {
-                RunObject = codeunit "Mail Codeunit";
+                RunObject = codeunit "Mail Mgt";
 
                 ApplicationArea = all;
             }

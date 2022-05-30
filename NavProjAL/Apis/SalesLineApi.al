@@ -1,10 +1,10 @@
-page 50131 SalesLineApi
+page 50130 "Sales Line Api"
 {
     PageType = API;
     Caption = 'Sales Line Api';
-    APIPublisher = 'publisherName';
-    APIGroup = 'groupName';
-    APIVersion = 'v0.0';
+    APIPublisher = 'dp';
+    APIGroup = 'WooCommerce';
+    APIVersion = 'v0.1';
     EntityName = 'SalesLine';
     EntitySetName = 'SalesLineApi';
     SourceTable = "Sales Line";

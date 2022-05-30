@@ -1,10 +1,10 @@
-page 50121 CustomerAPI
+page 50120 "Customer Api"
 {
     PageType = API;
-    Caption = 'api for customer';
-    APIPublisher = 'publisherName';
-    APIGroup = 'groupName';
-    APIVersion = 'v0.1';
+    Caption = 'Customer Api';
+    APIPublisher = 'dp';
+    APIGroup = 'WooCommerce';
+    APIVersion = 'v0.2';
     EntityName = 'CustomerSet';
     EntitySetName = 'CustomerSetName';
     SourceTable = Customer;

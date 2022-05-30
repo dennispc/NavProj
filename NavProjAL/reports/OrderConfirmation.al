@@ -1,10 +1,10 @@
-report 50133 "Sales Order Overview"
+report 50133 "Sales Confirmation"
 {
     UsageCategory = Administration;
     ApplicationArea = All;
     ProcessingOnly = false;
     DefaultLayout = RDLC;
-    RDLCLayout = 'layouts/salesOrderOverview.rdlc';
+    RDLCLayout = 'layouts/sales_confirmation.rdlc';
 
     dataset
     {
@@ -37,7 +37,4 @@ report 50133 "Sales Order Overview"
 
         }
     }
-
-    var
-        myInt: Integer;
 }

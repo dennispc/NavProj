@@ -1,4 +1,4 @@
-pageextension 50142 SalesOrderExt extends "Sales Order List"
+pageextension 50141 "Sales Order List Extension" extends "Sales Order List"
 {
     layout
     {
@@ -17,15 +17,11 @@ pageextension 50142 SalesOrderExt extends "Sales Order List"
 
                 trigger OnAction()
                 var
-                    mailCodeunit: Codeunit "Mail Codeunit";
+                    MailCodeunit: Codeunit "Mail Mgt";
                 begin
-                    mailCodeunit.mailWithSalesReport('dnisp@live.dk');
+                    MailCodeunit.MailWithSalesReport('dnisp@live.dk');
                 end;
             }
         }
     }
-
-    var
-        myInt: Integer;
-        asd: Page 30;
 }

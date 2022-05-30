@@ -1,10 +1,10 @@
-page 50122 ContactApi
+page 50121 "Contact Api"
 {
     PageType = API;
-    Caption = 'apiPageName';
-    APIPublisher = 'publisherName';
-    APIGroup = 'groupName';
-    APIVersion = 'v0.0';
+    Caption = 'Contact Api';
+    APIPublisher = 'dp';
+    APIGroup = 'WooCommerce';
+    APIVersion = 'v0.1';
     EntityName = 'ContactApi';
     EntitySetName = 'ContactsApi';
     SourceTable = Contact;

@@ -1,4 +1,4 @@
-tableextension 50170 ItemTableExtension extends Item
+tableextension 50170 "Item Extension" extends Item
 {
     fields
     {
@@ -11,7 +11,4 @@ tableextension 50170 ItemTableExtension extends Item
 
         }
     }
-
-    var
-        myInt: Integer;
 }

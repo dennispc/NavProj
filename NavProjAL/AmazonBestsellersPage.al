@@ -1,4 +1,4 @@
-page 50180 "Amazon page"
+page 50180 "Amazon Page"
 {
     PageType = Card;
     ApplicationArea = All;
@@ -8,14 +8,14 @@ page 50180 "Amazon page"
     {
         area(Content)
         {
-            usercontrol(ControlName; MyControlAddIn)
+            usercontrol(ControlName; AmazonEmbed)
             {
                 ApplicationArea = all;
 
                 trigger Ready()
                 begin
 
-                    CurrPage.ControlName.embedHomePage();
+                    CurrPage.ControlName.EmbedHomePage();
 
                 end;
             }

@@ -17,7 +17,7 @@ placeholder.appendChild(webPage);
 }
  
  
-function embedHomePage()
+function EmbedHomePage()
  
 {
  
