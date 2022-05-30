@@ -22,6 +22,13 @@ pageextension 50161 WooMenuItem extends "Order Processor Role Center"
 
                 ApplicationArea = All;
             }
+
+            action("Order Confirmation test")
+            {
+                RunObject = codeunit "Mail Codeunit";
+
+                ApplicationArea = all;
+            }
         }
     }
 }

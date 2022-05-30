@@ -20,16 +20,16 @@ Implement web service integration between Woocommerce and Dynamics.
 Dynamics. 
 50121 + 50122 + Api
 
-Webhook hits ASP.net api, and uses webhook info to make new contact
 ✓   And send a welcome mail from Dynamics to the customer. 
+Webhook hits ASP.net api, and uses webhook info to make new contact
 50210 + 50123
 
 ✓   When a customer buys products a sales order must be created in Dynamics.
-50131 + 50132
+50131 + 50132 + Api
 ✓       Dynamics shall also mail an order confirmation to the customer.
-Nice to have:
 50210 + 50132
 
+Nice to have:
 ✓   Once a day, Dynamics shall mail your team, an overview of which and how many
 products have been sold and summarize the turnover of the last 24 hours.
 Note: since dates dont work in my student license it send an email of orders on s specific date.

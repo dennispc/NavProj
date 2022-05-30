@@ -2,7 +2,7 @@ codeunit 50210 "Mail Codeunit"
 {
     trigger OnRun()
     begin
-
+        mailWithSalesOverview(Format(1282), 'dnisp@live.dk', 'test', 'testing')
     end;
 
     procedure mail(toEmail_P: Text; subject_P: Text; body_P: Text)
@@ -79,6 +79,49 @@ codeunit 50210 "Mail Codeunit"
         end
         else
             Message('No sales today, try again later.')
+    end;
+
+    procedure mailWithSalesOverview(salesHeaderNo_P: Code[20]; toEmail_P: Text; subject_P: Text; body_P: Text)
+    var
+        SmtpMailSetup: Record "SMTP Mail Setup";
+        Mail: Codeunit "SMTP Mail";
+        Recipients: List of [Text];
+        Subject: Text;
+        Body: Text;
+        CRLF: Text[2];
+        HTMLFormatted: Boolean;
+        tempPdf: Codeunit "Temp Blob";
+        inStreamer: InStream;
+        report: Report "Sales Order Overview";
+        fileName: Text;
+        fileManager: Codeunit "File Management";
+        lines: Record "Sales Line";
+        docType: Enum "Sales Document Type";
+    begin
+        lines.SetFilter("Document No.", salesHeaderNo_P);
+
+        lines.find('-');
+        report.SetTableView(lines);
+        fileName := 'Order_overview_' + Format(Today) + '.pdf';
+        if not SmtpMailSetup.Get() then
+            exit;
+        HTMLFormatted := true;
+
+        Recipients.Add(toEmail_P);
+
+        Subject := subject_P;
+        Body := body_P;
+
+        if (report.SaveAsPdf(fileName)) then begin
+            fileManager.BLOBImportFromServerFile(tempPdf, fileName);
+            tempPdf.CreateInStream(inStreamer);
+
+            Mail.CreateMessage('Business Central', SmtpMailSetup."User ID", Recipients, Subject, Body, HTMLFormatted);
+            Mail.AddAttachmentStream(inStreamer, fileName);
+
+            if not Mail.Send() then
+                Message(Mail.GetLastSendMailErrorText());
+        end
     end;
 
 }

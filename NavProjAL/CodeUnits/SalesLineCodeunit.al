@@ -93,19 +93,18 @@ codeunit 50132 SalesLine
             end;
             index += 1
         until index = counts;
-        header.SetRange("No.", DocumentNo);
-        if (header.Find('-')) then begin
-            mailCodeunit.mail(
-                header."Sell-to E-Mail",
-                'Order ' + OrderId + ' Received'
-                ,
-                'Hello ' + header."Sell-to Customer Name" + ' ' + header."Sell-to Customer Name 2" + '<br>' +
-                'We are sending you this email, to inform you, that your order (OrderNo ' + OrderId +
-                ') has been received.<br><br>' +
-                'Best regards, <br>' +
-                'WooCommerce'
-            );
-        end;
+        mailCodeunit.mailWithSalesOverview(
+            DocumentNo,
+            header."Sell-to E-Mail",
+            'Order ' + OrderId + ' Received',
+            'Hello ' + header."Sell-to Customer Name" + ' ' + header."Sell-to Customer Name 2" + '<br>' +
+            'We are sending you this email, to inform you, that your order (OrderNo ' + OrderId +
+            ') has been received.<br>' +
+            '<br>' +
+            'Best regards, <br>' +
+            'WooCommerce'
+
+        );
     end;
 
 }
