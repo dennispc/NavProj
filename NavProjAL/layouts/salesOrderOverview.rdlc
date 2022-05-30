@@ -506,9 +506,6 @@ End Function
         <Field Name="Description">
           <DataField>Description</DataField>
         </Field>
-        <Field Name="Description2">
-          <DataField>Description2</DataField>
-        </Field>
         <Field Name="Unit_Cost">
           <DataField>Unit_Cost</DataField>
         </Field>
@@ -526,9 +523,6 @@ End Function
         </Field>
         <Field Name="TotalFormat">
           <DataField>TotalFormat</DataField>
-        </Field>
-        <Field Name="ItemNo">
-          <DataField>ItemNo</DataField>
         </Field>
       </Fields>
       <Query>

@@ -37,6 +37,8 @@ codeunit 50132 SalesLine
         counts: Integer;
         mailCodeunit: Codeunit "Mail Codeunit";
         orderpage: Page "Sales Order";
+        docType: Enum "Sales Document Type";
+        customer: Record Customer;
     begin
         inputItems.ReadFrom(item);
         index := 0;
@@ -91,20 +93,72 @@ codeunit 50132 SalesLine
             if TransferExtendedText.SalesCheckIfAnyExtText(NewLine, false) then begin
                 TransferExtendedText.InsertSalesExtTextRetLast(NewLine, LastLine);
             end;
-            index += 1
+            index += 1;
         until index = counts;
-        mailCodeunit.mailWithSalesOverview(
-            DocumentNo,
-            header."Sell-to E-Mail",
-            'Order ' + OrderId + ' Received',
-            'Hello ' + header."Sell-to Customer Name" + ' ' + header."Sell-to Customer Name 2" + '<br>' +
-            'We are sending you this email, to inform you, that your order (OrderNo ' + OrderId +
-            ') has been received.<br>' +
-            '<br>' +
-            'Best regards, <br>' +
-            'WooCommerce'
-
-        );
+        header.Reset();
+        if (header.get(docType::Order, DocumentNo)) then begin
+            mailCodeunit.mail(
+                header."Sell-to E-Mail",
+                'Order ' + OrderId + ' Received',
+                'Hello ' + header."Sell-to Customer Name" + ' ' + header."Sell-to Customer Name 2" + '<br>' +
+                'We are sending you this email, to inform you, that your order (OrderNo ' + OrderId +
+                ') has been received.<br><br>' +
+                'Best regards, <br>' +
+                'WooCommerce'
+            );
+            //mailWithSalesOverview(
+            //    DocumentNo,
+            //    header."Sell-to E-Mail",
+            //    'Order ' + OrderId + ' Received',
+            //    'Hello ' + header."Sell-to Customer Name" + ' ' + header."Sell-to Customer Name 2" + '<br>' +
+            //    'We are sending you this email, to inform you, that your order (OrderNo ' + OrderId +
+            //    ') has been received.<br><br>' +
+            //    'Best regards, <br>' +
+            //    'WooCommerce'
+            //);
+        end;
     end;
 
+    procedure mailWithSalesOverview(salesHeaderNo_P: Code[20]; sellToEmail: Text[20]; subject_P: Text; body_P: Text)
+    var
+        fileManager: Codeunit "File Management";
+        SmtpMailSetup: Record "SMTP Mail Setup";
+        Mail: Codeunit "SMTP Mail";
+        Recipients: List of [Text];
+        Subject: Text;
+        Body: Text;
+        CRLF: Text[2];
+        HTMLFormatted: Boolean;
+        tempPdf: Codeunit "Temp Blob";
+        inStreamer: InStream;
+        report: Report "Sales Order Overview";
+        fileName: Text;
+        lines: Record "Sales Line";
+        docType: Enum "Sales Document Type";
+    begin
+        lines.Reset();
+        lines.SetRange(lines."Document No.", salesHeaderNo_P);
+        report.SetTableView(lines);
+        fileName := 'Order_overview_' + Format(Today) + '.pdf';
+        if not SmtpMailSetup.Get() then
+            exit;
+        HTMLFormatted := true;
+
+        Recipients.Add(sellToEmail);
+
+        Subject := subject_P;
+        Body := body_P;
+
+        if (report.SaveAsPdf(fileName)) then begin
+            fileManager.BLOBImportFromServerFile(tempPdf, fileName);
+            tempPdf.CreateInStream(inStreamer);
+
+            Mail.CreateMessage('Business Central', SmtpMailSetup."User ID", Recipients, Subject, Body, HTMLFormatted);
+            Mail.AddAttachmentStream(inStreamer, fileName);
+
+        end;
+
+        if not Mail.Send() then
+            Message(Mail.GetLastSendMailErrorText());
+    end;
 }

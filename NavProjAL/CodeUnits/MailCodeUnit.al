@@ -1,8 +1,11 @@
 codeunit 50210 "Mail Codeunit"
 {
     trigger OnRun()
+    var
     begin
-        mailWithSalesOverview(Format(1282), 'dnisp@live.dk', 'test', 'testing')
+
+        mailWithSalesOverview(Format(1296), 'dnisp@live.dk', 'test', 'test');
+
     end;
 
     procedure mail(toEmail_P: Text; subject_P: Text; body_P: Text)
@@ -51,11 +54,13 @@ codeunit 50210 "Mail Codeunit"
         report: Report "Sales 24h Overview";
         fileName: Text;
         fileManager: Codeunit "File Management";
-        headersOfToday: Record "Sales Header";
+        headers: Record "Sales Header";
+        headersOfToday: Record "Sales Header" temporary;
         day: Date;
     begin
         day := DMY2Date(27, 1, 2022);
-        headersOfToday.SetFilter("Order Date", format(day));
+        headers.SetRange("Posting Date", day, day + 1);
+
         report.SetTableView(headersOfToday);
         fileName := 'sales_report_' + Format(Today) + '.pdf';
         if not SmtpMailSetup.Get() then
@@ -81,8 +86,9 @@ codeunit 50210 "Mail Codeunit"
             Message('No sales today, try again later.')
     end;
 
-    procedure mailWithSalesOverview(salesHeaderNo_P: Code[20]; toEmail_P: Text; subject_P: Text; body_P: Text)
+    procedure mailWithSalesOverview(salesHeaderNo_P: Code[20]; sellToEmail: Text[20]; subject_P: Text; body_P: Text)
     var
+        fileManager: Codeunit "File Management";
         SmtpMailSetup: Record "SMTP Mail Setup";
         Mail: Codeunit "SMTP Mail";
         Recipients: List of [Text];
@@ -94,20 +100,19 @@ codeunit 50210 "Mail Codeunit"
         inStreamer: InStream;
         report: Report "Sales Order Overview";
         fileName: Text;
-        fileManager: Codeunit "File Management";
         lines: Record "Sales Line";
         docType: Enum "Sales Document Type";
     begin
-        lines.SetFilter("Document No.", salesHeaderNo_P);
-
-        lines.find('-');
+        lines.Reset();
+        lines.SetRange(lines."Document Type", docType::Order);
+        lines.SetRange(lines."Document No.", salesHeaderNo_P);
         report.SetTableView(lines);
         fileName := 'Order_overview_' + Format(Today) + '.pdf';
         if not SmtpMailSetup.Get() then
             exit;
         HTMLFormatted := true;
 
-        Recipients.Add(toEmail_P);
+        Recipients.Add(sellToEmail);
 
         Subject := subject_P;
         Body := body_P;
@@ -119,9 +124,10 @@ codeunit 50210 "Mail Codeunit"
             Mail.CreateMessage('Business Central', SmtpMailSetup."User ID", Recipients, Subject, Body, HTMLFormatted);
             Mail.AddAttachmentStream(inStreamer, fileName);
 
-            if not Mail.Send() then
-                Message(Mail.GetLastSendMailErrorText());
-        end
+        end;
+
+        if not Mail.Send() then
+            Message(Mail.GetLastSendMailErrorText());
     end;
 
 }

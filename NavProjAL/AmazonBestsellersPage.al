@@ -18,12 +18,7 @@ page 50180 "Amazon page"
                     CurrPage.ControlName.embedHomePage();
 
                 end;
-
-
             }
         }
-
-
     }
-
 }
