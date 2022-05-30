@@ -61,7 +61,7 @@ in your shop. See Figur 2 Amazon bestsellers. The webpage must be shown “insid
 external link.
 50180
 
-5.
+✓5.
 As fraud is an increasing problem for web shops, implement a solution, which detects if the same address
 suddenly makes more than five purchases within 24 hours.
 The solution must be a report which lists all customers with more than five purchases (Individual orders)

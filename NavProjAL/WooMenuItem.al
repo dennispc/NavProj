@@ -16,6 +16,12 @@ pageextension 50161 WooMenuItem extends "Order Processor Role Center"
 
                 ApplicationArea = All;
             }
+            action("Fraud")
+            {
+                RunObject = codeunit FraudCodeunit;
+
+                ApplicationArea = All;
+            }
         }
     }
 }
