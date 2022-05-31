@@ -48,6 +48,10 @@ codeunit 50110 "Item Export Mgt"
             end;
         end;
 
-        Message(ResponseText);
+        if (Response.IsSuccessStatusCode) then
+            Message('Item Added, Code:' + Format(Response.HttpStatusCode))
+        else
+            Message('Something went wront Code:' + Format(Response.HttpStatusCode));
+
     end;
 }

@@ -18,7 +18,7 @@ Implement web service integration between Woocommerce and Dynamics.
 
 ✓   When a customer is created in Woocommerce, then the customer should also be created in 
 Dynamics. 
-50120(CustomerApi) + 50121(ContactApi) + Api
+50120(CustomerApi) + Api
 
 ✓   And send a welcome mail from Dynamics to the customer. 
 Webhook hits ASP.net api, and uses webhook info to make new contact
@@ -42,7 +42,7 @@ The customer has the following requirements:
 The customer wants a chart, which can show:
 The five most sold products for the last week and on which day they were sold. The product name must be
 shown as a tooltip. If the user clicks on the chart item, 
-*then drill down and show the product on the item card.
+✓then drill down and show the product on the item card.
 50150(WooSalesCard)
 
 ✓2.
