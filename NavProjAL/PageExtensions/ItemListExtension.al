@@ -19,6 +19,7 @@ pageextension 50111 "Item Extension" extends "Item List"
                     exp: Codeunit "Item Export Mgt";
                 begin
                     exp.ExportToWoocommerce(Rec);
+                    Rec."Is in Woocommerce" := true;
                 end;
             }
         }

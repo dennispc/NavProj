@@ -32,7 +32,13 @@ codeunit 50200 "Mail Mgt"
         Subject := Subject_P;
         Body := Body_P;
 
-        Mail.CreateMessage('Business Central', SmtpMailSetup."User ID", Recipients, Subject, Body, HTMLFormatted);
+        Mail.CreateMessage('Business Central',
+        SmtpMailSetup."User ID",
+        Recipients,
+        Subject,
+        Body,
+        HTMLFormatted
+        );
 
         if not Mail.Send() then
             Message(Mail.GetLastSendMailErrorText());

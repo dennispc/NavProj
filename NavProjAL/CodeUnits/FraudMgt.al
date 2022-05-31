@@ -12,7 +12,7 @@ codeunit 50190 "Fraud Mgt"
     procedure GetFraud(Day_P: Date)
     var
         Sales: Record "Sales Header";
-        SuspiciouesCustomer: Record Customer temporary;
+        SuspiciousCustomer: Record Customer temporary;
         currCustomer: Record Customer;
         RepeatedAddressCount: Integer;
         Address: Text;
@@ -47,14 +47,14 @@ codeunit 50190 "Fraud Mgt"
             exit;
         end;
         currCustomer.SetFilter(currCustomer."No.", textFilter.Substring(2));
-        SuspiciouesCustomer.Copy(currCustomer);
-        SuspiciouesCustomer.Insert();
+        SuspiciousCustomer.Copy(currCustomer);
+        SuspiciousCustomer.Insert();
 
         FileName := 'fraud' + Format(Day_P) + '.pdf';
 
-        CustReport.SetTableView(SuspiciouesCustomer);
-        CustReport.SaveAsPdf('.\fraudtest.pdf');
-        Download('.\fraudtest.pdf', '', 'C:\Users\dp\Documents\NavProj\NavProjAL\fraud', '', FileName);
+        CustReport.SetTableView(SuspiciousCustomer);
+        CustReport.SaveAsPdf(FileName);
+        Download(FileName, '', '', '', FileName);
     end;
 
 }
